@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AddForage extends StatelessWidget {
-  const AddForage({super.key});
+  AddForage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -9,51 +9,58 @@ class AddForage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Add new forage'),
       ),
-      body: ListView(
-        children: [
-          TextField(
-            // controller: ,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: "Name",
-            ),
-          ),
-          TextField(
-            // controller: ,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: "Location",
-            ),
-          ),
-          ListTile(
-            leading: Checkbox(
-              value: false,
-              onChanged: (newVal) {
-                //
-              },
-            ),
-            title: Text("Currently in season"),
-          ),
-          TextField(
-            // controller: ,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: "Notes",
-            ),
-          ),
-          Row(
-            children: [
-              MaterialButton(
-                child: Text("SAVE"),
-                onPressed: () {},
+      body: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: ListView(
+          children: [
+            SizedBox(height: 24),
+            TextField(
+              // controller: ,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                label: Text("Name"),
               ),
-              MaterialButton(
-                child: Text("DELETE"),
-                onPressed: () {},
+            ),
+            SizedBox(height: 24),
+            TextField(
+              // controller: ,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                label: Text("Location"),
               ),
-            ],
-          ),
-        ],
+            ),
+            SizedBox(height: 24),
+            ListTile(
+              leading: Checkbox(
+                value: false,
+                onChanged: (newVal) {
+                  //
+                },
+              ),
+              title: Text("Currently in season"),
+            ),
+            SizedBox(height: 24),
+            TextField(
+              // controller: ,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                label: Text("Notes"),
+              ),
+            ),
+            Row(
+              children: [
+                MaterialButton(
+                  child: Text("SAVE"),
+                  onPressed: () {},
+                ),
+                MaterialButton(
+                  child: Text("DELETE"),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:forage/forage_p/home_page_p.dart';
+import 'package:forage/forage_p/providers/forage_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,7 +19,10 @@ class MyApp extends StatelessWidget {
           seedColor: Colors.purple,
         ),
       ),
-      home: HomePageP(),
+      home: ChangeNotifierProvider(
+        create: (context) => ForageProvider(),
+        child: HomePageP(),
+      ),
     );
   }
 }
