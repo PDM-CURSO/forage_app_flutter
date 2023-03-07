@@ -4,7 +4,12 @@ import 'package:forage/forage_p/providers/forage_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ForageProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -19,10 +24,7 @@ class MyApp extends StatelessWidget {
           seedColor: Colors.purple,
         ),
       ),
-      home: ChangeNotifierProvider(
-        create: (context) => ForageProvider(),
-        child: HomePageP(),
-      ),
+      home: HomePageP(),
     );
   }
 }

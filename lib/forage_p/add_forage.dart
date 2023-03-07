@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:forage/forage_p/providers/forage_provider.dart';
+import 'package:provider/provider.dart';
 
 class AddForage extends StatelessWidget {
   AddForage({super.key});
@@ -15,7 +17,7 @@ class AddForage extends StatelessWidget {
           children: [
             SizedBox(height: 24),
             TextField(
-              // controller: ,
+              controller: context.read<ForageProvider>().nameCont,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 label: Text("Name"),
@@ -23,7 +25,7 @@ class AddForage extends StatelessWidget {
             ),
             SizedBox(height: 24),
             TextField(
-              // controller: ,
+              controller: context.read<ForageProvider>().locationCont,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 label: Text("Location"),
@@ -32,16 +34,16 @@ class AddForage extends StatelessWidget {
             SizedBox(height: 24),
             ListTile(
               leading: Checkbox(
-                value: false,
+                value: context.watch<ForageProvider>().getIsInSeason,
                 onChanged: (newVal) {
-                  //
+                  context.read<ForageProvider>().setCurrentlyInSeason(newVal);
                 },
               ),
               title: Text("Currently in season"),
             ),
             SizedBox(height: 24),
             TextField(
-              // controller: ,
+              controller: context.read<ForageProvider>().notesCont,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 label: Text("Notes"),
@@ -51,11 +53,16 @@ class AddForage extends StatelessWidget {
               children: [
                 MaterialButton(
                   child: Text("SAVE"),
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<ForageProvider>().saveNewForage();
+                    Navigator.of(context).pop();
+                  },
                 ),
                 MaterialButton(
                   child: Text("DELETE"),
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<ForageProvider>().clearNewForage();
+                  },
                 ),
               ],
             ),

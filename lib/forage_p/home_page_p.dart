@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:forage/forage_p/add_forage.dart';
+import 'package:forage/forage_p/forage_details.dart';
+import 'package:forage/forage_p/providers/forage_provider.dart';
+import 'package:provider/provider.dart';
 
 class HomePageP extends StatelessWidget {
   HomePageP({super.key});
@@ -11,9 +14,9 @@ class HomePageP extends StatelessWidget {
         title: Text('Forage P'),
       ),
       body: ListView.builder(
-        itemCount: 1,
+        itemCount: context.watch<ForageProvider>().getForageList.length,
         itemBuilder: (BuildContext context, int index) {
-          return Text("");
+          return itemForageList(context, index);
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -25,6 +28,22 @@ class HomePageP extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+
+  Widget itemForageList(BuildContext context, int index) {
+    return ListTile(
+      title: Text(context.watch<ForageProvider>().getForageList[index]!.name),
+      subtitle: Text(
+        context.watch<ForageProvider>().getForageList[index]!.location,
+      ),
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => ForageDetails(itemIndex: index),
+          ),
+        );
+      },
     );
   }
 }
